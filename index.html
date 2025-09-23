@@ -3,7 +3,7 @@
 
 <head>   
    <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!--адаптивность-->
    <title>Iryna Veriukhalova | Lebenslauf</title>
    <link rel="stylesheet" href="style.css"/>
    <link rel="icon" type="image/x-icon" href="./Img/favicon.ico"> 
@@ -15,7 +15,7 @@
       <header class="header">
          <nav>
             <div class="nav-links">  <!--menu - блок слева-->
-               <ul class="main-menu">
+               <ul class="main-menu" id="main-menu">
                   <li><a href="#about">Über mich</a></li>
                   <li><a href="#experience">Berufserfahrung</a></li>
                   <li><a href="#education">Ausbildung</a></li>
@@ -26,6 +26,11 @@
             <div class="nav-button">  <!--кнопка - блок справа-->
                <a href="./Img/Lebenslauf.pdf" target="_blank" class="resume-btn">Lebenslauf</a>
             </div>
+            <button class="menu-toggle" aria-label="Menü öffnen" aria-controls="main-menu" aria-expanded="false">
+               <span></span>
+               <span></span>
+               <span></span>
+            </button>
          </nav>
       </header>
 
@@ -36,113 +41,147 @@
          <!--Name-->
          <section id="name" class="content-section">
             <p class="intro">Hallo, mein Name ist</p>
-            <h1 class="big-heading">Iryna Veriukhalova</h1>
+            
+            <h1 class="name-heading">
+               <span class="text-wrapper">
+                  <span class="letters">Iryna Veriukhalova</span>
+               </span>
+            </h1>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
             <div class="summary">
                <p>Ich habe über 10 Jahre Erfahrung im IT-Bereich als Programmiererin, Anwendungsentwicklerin und Systemadministratorin. </p>
                <p>Aktuell konzentriere ich mich auf die Webentwicklung und vertiefe meine Kenntnisse in modernen Webtechnologien.</p>
             </div>
          </section>
 
-         <!--Über mich-->
+         <svg style="position: absolute; width: 0; height: 0">
+            <filter id="glass" x="-50%" y="-50%" width="200%" height="200%" primitiveUnits="objectBoundingBox">
+               <feImage x="-50%" y="-50%" width="200%" height="200%" result="map" />
+               <feGaussianBlur in="SourceGraphic" stdDeviation="0.02" result="blur" />
+               <feDisplacementMap id="disp" in="blur" in2="map" scale="0.8" xChannelSelector="R" yChannelSelector="G"
+               ></feDisplacementMap>
+            </filter>
+         </svg>
+
+         <a href="#" class="arrow-container" aria-label="Nach oben">
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+            <div class="arrow"></div>  
+         </a>
+
+         <!--Über mich-->   
          <section id="about" class="content-section">
-            <h2 class="numbered-heading">Über mich</h2>
-            <div class="about-grid">
-               <div class="about-text">
-                  <p>Nach meinem Umzug nach Deutschland im Jahr 2022 habe ich zunächst die deutsche Sprache intensiv erlernt und konzentriere mich nun auf den Bereich Webentwicklung.</p>
-                  <p>Für mich ist es besonders interessant, benutzerfreundliche, funktionale und kreative Lösungen umzusetzen. Daher möchte ich meine Kenntnisse in der Webentwicklung weiter ausbauen.</p>
-                  <p>Meine IT-Kenntnisse umfassen unter anderem:</p>
-                  <ul class="skills-list">
-                     <li>
-                        HTML5
-                        <div class="bar">
-                           <div class="level" style="width: 60%;"></div>
-                        </div>
-                     </li>
-                     <li>
-                        Delphi
-                        <div class="bar">
-                           <div class="level" style="width: 70%;"></div>
-                        </div>
-                     </li>
-                     <li>
-                        CSS3
-                        <div class="bar">
-                           <div class="level" style="width: 60%;"></div>
-                        </div>
-                     </li>
-                     <li>
-                        SQL
-                        <div class="bar">
-                           <div class="level" style="width: 30%;"></div>
-                        </div>
-                     </li>
-                     <li>
-                        JavaScript
-                        <div class="bar">
-                           <div class="level" style="width: 30%;"></div>
-                        </div>
-                     </li>
-                     <li>
-                        CMS Joomla
-                        <div class="bar">
-                           <div class="level" style="width: 85%;"></div>
-                        </div>
-                     </li>
-                  </ul>
-               </div>               
+            <h2 class="section-heading">Über mich</h2>
+            <div class="about-text">
+               <p>Seit meinem Umzug nach Deutschland im Jahr 2022 lebe ich in Jena, habe zunächst die deutsche Sprache intensiv erlernt und konzentriere mich nun auf den Bereich Webentwicklung.</p>
+               <p>Für mich ist es besonders interessant, benutzerfreundliche, funktionale und kreative Lösungen umzusetzen. Daher möchte ich meine Kenntnisse in der Webentwicklung weiter ausbauen.</p>
+               <p>Meine <span class="highlight">IT-Kenntnisse</span> umfassen unter anderem:</p> 
+               <ul class="skills-list">
+                  <li>
+                     HTML5
+                     <div class="bar">
+                        <div class="level" style="width: 70%;"></div>
+                     </div>
+                  </li>
+                  <li>
+                     Delphi
+                     <div class="bar">
+                        <div class="level" style="width: 75%;"></div>
+                     </div>
+                  </li>
+                  <li>
+                     CSS3
+                     <div class="bar">
+                        <div class="level" style="width: 65%;"></div>
+                     </div>
+                  </li>
+                  <li>
+                     SQL
+                     <div class="bar">
+                        <div class="level" style="width: 30%;"></div>
+                     </div>
+                  </li>
+                  <li>
+                     JavaScript
+                     <div class="bar">
+                        <div class="level" style="width: 35%;"></div>
+                     </div>
+                  </li>
+                  <li>
+                     CMS Joomla
+                     <div class="bar">
+                        <div class="level" style="width: 85%;"></div>
+                     </div>
+                  </li>
+                  <li>
+                     Git
+                     <div class="bar">
+                        <div class="level" style="width: 50%;"></div>
+                     </div>
+                  </li>
+               </ul>
             </div>
          </section>
-
+                  
          <!--Berufserfahrung-->
          <section id="experience" class="content-section">
-            <h2 class="numbered-heading">Berufserfahrung</h2>
+            <h2 class="section-heading">Berufserfahrung</h2>
             <div class="experience-tabs">
-               <div class="tabs-list" role="tablist">
-                  <button id="tab-0" class="it-job" role="tab" aria-selected="true" aria-controls="panel-0" tabindex="0">Programmiererin</button>
+
+               <div class="tabs-list" role="tablist"> <!--role="tablist"- объявляет, что этот div — контейнер для вкладок / открыт по умолчанию-->
+                  <button id="tab-0" class="it-job" role="tab" aria-selected="true"  aria-controls="panel-0" tabindex="0">Programmiererin</button> 
+                  <!--role="tab" → каждая кнопка внутри — это вкладка / aria-controls - какая панель связана с этой вкладкой / tabindex="0/-1" →  можно ли фокусироваться на кнопке клавиатурой-->
                   <button id="tab-1" class="it-job" role="tab" aria-selected="false" aria-controls="panel-1" tabindex="-1">Systemadministratorin</button>
-                  <button id="tab-2" role="tab" aria-selected="false" aria-controls="panel-2" tabindex="-1">Buchhalterin</button>
-                  <button id="tab-3" role="tab" aria-selected="false" aria-controls="panel-3" tabindex="-1">Spezialistin</button>
-                  <button id="tab-4" role="tab" aria-selected="false" aria-controls="panel-4" tabindex="-1">Wirtschaftlerin</button>
-                  <div class="highlighter"></div>
+                  <button id="tab-2"                role="tab" aria-selected="false" aria-controls="panel-2" tabindex="-1">Buchhalterin</button>
+                  <button id="tab-3"                role="tab" aria-selected="false" aria-controls="panel-3" tabindex="-1">Spezialistin</button>
+                  <button id="tab-4"                role="tab" aria-selected="false" aria-controls="panel-4" tabindex="-1">Wirtschaftlerin</button>
+                  <div class="highlighter"></div> <!--ползунок рядом с выбранной кнопкой-->
                </div>
-               <div class="tabs-panels">
-                  <div id="panel-0" role="tabpanel" aria-labelledby="tab-0" tabindex="0">
-                     <h3>Medizinisches Kolleg / IT-Unternehmen Danko, Charkiw, Ukraine - <span class="job-title">Programmiererin</span></h3>
+
+               <div class="tabs-panels"> <!--контейнер для панелей-->
+                  <div id="panel-0" role="tabpanel" aria-labelledby="tab-0" tabindex="0"> 
+                  <!--role="tabpanel" → блок с содержимым, которое относится к конкретной вкладке / aria-labelledby="tab-0" → указывает, какая вкладка управляет этой панелью-->
+                  <!--Если нет атрибута tabindex, то обычные <div> или <section> вообще не могут получить фокус-->
+                     <h3>IT-Unternehmen Danko, Charkiw, Ukraine - <span class="job-title">Programmiererin</span></h3>
                      <p class="range">2017 - 2022</p>
                      <ul>
-                        <li>Programmierung in Delphi und SQL-Sprachen für Buchhaltungssoftware (Anwendungsentwicklung)</li>
+                        <li>Programmierung in der <strong>Delphi</strong> und <strong>SQL</strong>-Sprachen für Buchhaltungssoftware (Anwendungsentwicklung)</li>
                         <li>Datenbankarbeit und Entwicklung von Formen für den Datenversand</li>
+                        <li>Betreuung der Website auf <strong>CMS Joomla</strong></li>
                         <li>Installieren und Konfigurieren von virtuellen Hyper-V-Maschinen</li>
                         <li>Beratung, Kundenbetreuung, Wartung und Service</li>
                      </ul>
                   </div>
-                  <div id="panel-1" role="tabpanel" aria-labelledby="tab-1" tabindex="0" class="hidden">
+                  <div id="panel-1" role="tabpanel" aria-labelledby="tab-1" tabindex="0" class="hidden"> 
+                  <!--aria-labelledby- привязка к кнопке / добавлен class hidden для скрытия-->
                      <h3>Wissenschaftliche medizinische Bibliothek, Charkiw - <span class="job-title">Systemadministratorin</span></h3>
-                     <p class="range">2012 - 2017</p>
+                     <p class="range">2013 - 2017</p>
                      <ul>
                         <li>Verwaltung und technischer Support für Computerausrüstung, lokales Netzwerk und Software: Installation, Aktualisierung, Konfiguration und Reparatur</li>
                         <li>Entwicklung und Betreuung
-                           <a href="./Img/screenshot_HNMB.jpg" target="_blank" class="image-tooltip-trigger">
+                           <span class="image-tooltip-trigger">
                               der Website
-                              <div class="tooltip-container">
+                              <div class="tooltip-container"> <!--всплывающая подсказка-->
                                  <img src="./Img/screenshot_HNMB.jpg" alt="Screenshot der Website" class="tooltip-image-preview">
                                     <div class="tooltip-note">
                                        Verfügbar unter <br>http://medlibrary.kharkov.ua<br>
                                        (nur HTTP, kein SSL, nicht mehr gepflegt seit 2022)
                                     </div>
                               </div>
-                           </a>
-                           der Organisation (Webdesign-Programm Artisteer, CMS Joomla, Grundkenntnisse  HTML, CSS, phpMyAdmin): Design, Struktur, Content-Management, Domain- und Hosting-Administration
+                           </span>
+                           der Organisation (Webdesign-Programm <strong>Artisteer, CMS Joomla, HTML, CSS, JavaScript, phpMyAdmin</strong>): Design, Struktur, Content-Management, Domain- und Hosting-Administration
                         </li>
                      </ul>
                   </div>
                   <div id="panel-2" role="tabpanel" aria-labelledby="tab-2" tabindex="0" class="hidden">
                      <h3>Wissenschaftliche medizinische Bibliothek, Charkiw - <span class="job-title">Buchhalterin</span></h3>
-                     <p class="range">2011 - 2012</p>
+                     <p class="range">2011 - 2013</p>
                      <ul>
-                        <li>Entgegennahme, Verarbeitung und Kontrolle von Primärdokumenten</li>
-                        <li>Interaktion mit dem Staatsschatz und Führung von Aufzeichnungen</li>
-                     </u>
+                        <li>Entgegennahme, Verarbeitung und Kontrolle von Primärdokumenten im Buchhaltungsprogramm</li>
+                        <li>Interaktion mit dem Staatsschatz und den Dienstleistern</li>
+                        <li>Führung von Aufzeichnungen über Cashflow-Daten</li>
+                     </ul>
                   </div>
                   <div id="panel-3" role="tabpanel" aria-labelledby="tab-3" tabindex="0" class="hidden">
                      <h3>Abteilung für sozialen Schutz der Bevölkerung in Sozialversicherungsamt, Charkiw, Ukraine - <span class="job-title">Spezialistin</span></h3>
@@ -158,7 +197,8 @@
                      <ul>
                         <li>Betreuung juristischer und privater Personen</li>
                         <li>Kundenservice für Einlagen und Kredite</li>
-                        <li>Eröffnung von Abrechnungs- und Girokonten & Transaktionen mit Bankkarten</li>
+                        <li>Eröffnung von Abrechnungs- und Girokonten</li>
+                        <li>Transaktionen mit Bankkarten</li>
                      </ul>
                   </div>
                </div>
@@ -167,7 +207,7 @@
 
          <!--Ausbildung-->
          <section id="education" class="content-section">
-            <h2 class="numbered-heading">Ausbildung</h2>
+            <h2 class="section-heading">Ausbildung</h2>
             <div class="timeline">
                <div class="timeline-item">
                   <h3>Studium der Informationssysteme im Management</h3>
@@ -193,7 +233,7 @@
 
          <!--Weiterbildung-->
          <section id="weiterbildung" class="content-section">
-            <h2 class="numbered-heading">Weiterbildung</h2>
+            <h2 class="section-heading">Weiterbildung</h2>
             <div class="course-cards-container">
                <!-- карточки с курсами -->
                <div class="course-card">
@@ -231,9 +271,9 @@
                         <img src="./Img/Zertifikat_EdRa_de.png" alt="Zertifikat 3">
                      </div>
                </div>
-
             </div>
          </section>
+
          <!-- Popup Overlay для сертификата -->
          <div id="certificate-overlay" class="certificate-overlay">
             <img src="" alt="Zertifikat" id="certificate-image">
@@ -241,7 +281,7 @@
 
          <!--Kontakt-->
          <section id="kontakt" class="content-section">
-            <h2 class="numbered-heading">Kontakt</h2>
+            <h2 class="section-heading">Kontakt</h2>
             <div class="contact-menu-section">
                <div class="contact-submenu" id="contact-menu">
                   <button class="active" data-target="c1">Telefon</button>
@@ -253,7 +293,7 @@
                      <h3><a href="tel:+4915128146156">+49 151 281 461 56</a></h3>
                   </div>
                   <div id="c2" class="contact-content">
-                     <h3><a href="mailto:irini3575@gmail.com">irini3575@gmail.com</a></h3>
+                     <h3><a href="mailto:iryna.veriu@gmail.com">iryna.veriu@gmail.com</a></h3>
                   </div>
                   <div id="c3" class="contact-content">
                      <h3>Am Herrenberge 7, 07745 Jena, Deutschland</h3>
@@ -289,7 +329,8 @@
          </footer>
       </div>
    </div>
-
+ 
    <script src="script.js"></script>
+
 </body>
 </html>

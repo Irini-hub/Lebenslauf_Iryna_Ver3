@@ -12,46 +12,50 @@
 }
 
 /* основной стиль */
-html { scroll-behavior: smooth; }
+html { 
+   scroll-behavior: smooth; /* плавная прокрутка */
+} 
 body {
-   margin: 0;
-   background-color: var(--dark-navy);
-   color: var(--slate);
+   margin: 0;   /* убираем стандартные отступы */
+   background-color: var(--dark-navy);  /* фон */
+   color: var(--slate);  /* цвет текста */
    font-family: var(--font-sans);
    font-size: 18px;
    line-height: 1.3;
 }
-section {
-   padding: 100px 0;
-   max-width: 1200px; /*макс.ширина текстового блока*/
-   margin: 0 auto;
+html, body {
+   margin: 0;
+   padding: 0;
+   width: 100%;
+   overflow-x: hidden; /* убираем горизонтальный скролл */
 }
-
-main { padding: 0 150px; }
+section {
+   padding: 100px 0;  /* вертикальные отступы */
+   max-width: 1200px; /* макс.ширина текстового блока*/
+   margin: 0 auto;    /* центрируем */
+}
 a {
-   color: var(--green);
+   color: var(--green); 
    text-decoration: none;
    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-a:hover { color: var(--green); }
-
-/* Header & эффект скрытия*/
-.header.hidden { top: -100px; }
+a:hover { 
+   color: var(--green); 
+}
 
 /* Шапка меню */
 .header {
-   position: sticky;
+   position: sticky; /*→ всегда «прилипает» сверху*/
    top: 0;
    z-index: 1000;
    background: rgba(10, 25, 47, 0.60);/*  прозрачность контейнера для меню*/
-   backdrop-filter: blur(12px); /*размытость под полосой*/
+   backdrop-filter: blur(12px);   /* размытость под полосой*/
    -webkit-backdrop-filter: blur(12px);
-   box-shadow: 0 20px 40px -10px rgba(2, 12, 27, 0.8);
+   box-shadow: 0 20px 40px -10px rgba(2, 12, 27, 0.8);  /* тень */
    height: 80px;           
    padding: 0 50px;
 }
-
-/* Контейнер навигации */
+/* Контейнер навигации верхнего меню*/
 .header nav {
    height: 100%;
    display: flex;
@@ -59,8 +63,32 @@ a:hover { color: var(--green); }
    align-items: center;
    position: relative;
 }
+/* эффект скрытия меню*/
+.header.hidden { top: -100px; }
 
-/* Горизонтальное меню */
+/* Кнопка-бургер (скрыта на десктопе) */
+.menu-toggle {
+   display: none;
+   background: transparent;
+   border: 0;
+   width: 36px;
+   height: 28px;
+   padding: 0;
+   margin-left: 12px;
+   cursor: pointer;
+}
+.menu-toggle span {
+   display: block;
+   height: 2px;
+   background: var(--lightest-slate);
+   margin: 6px 0;
+   transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.menu-toggle.is-open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+.menu-toggle.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* ========Горизонтальное меню */
 .main-menu {
    list-style: none;
    display: flex;
@@ -69,9 +97,8 @@ a:hover { color: var(--green); }
    padding: 0;
    position: absolute; /* фиксируем меню по центру */
    left: 50%;
-   transform: translateX(-50%);
+   transform: translateX(-50%);  /* центрируем */
 }
-
 .main-menu li {
    margin: 0 15px;
    font-family: var(--font-mono);
@@ -83,18 +110,37 @@ a:hover { color: var(--green); }
    font-weight: 500;
    transition: color 0.3s ease;
 }
-
 .main-menu a:hover {
-   color: #64ffda;
+   color: #64ffda;  /* зелёный при наведении */
 }
+
+/*====Name ============*/
+.name-heading {
+   position: relative;
+   font-weight: 900;
+   font-size: 4em;
+}
+.name-heading .text-wrapper {
+   position: relative;
+   display: inline-block;
+   padding-top: 0.2em;
+   padding-right: 0.05em;
+   padding-bottom: 0.1em;
+   overflow: hidden;
+}
+.name-heading .letter {
+  display: inline-block;
+  line-height: 1em;
+  transform-origin: 0 100%; /* точка снизу */
+}
+
 /*----кнопки меню для IT----*/
 .it-job {
    font-weight: bold;
    font-size: 18px; /* чуть крупнее, чем обычные */
-   color: var(-light-slate);
-   border-left: 3px solid var(-light-slate);
+   color: var(--light-slate);
+   border-left: 3px solid var(--light-slate);
 }
-
 .resume-btn {
    color: var(--green);
    background-color: transparent;
@@ -106,37 +152,7 @@ a:hover { color: var(--green); }
 .resume-btn:hover { background-color: rgba(100, 255, 218, 0.1); }
 
 #about, #education {
-  padding-left: 300px; /* отступ слева для секций Über mich, Ausbildung */
-}
-/* Seitenelemente */
-.side-elements-left, .side-elements-right {
-   position: fixed;
-   bottom: 0;
-   width: 40px;
-   z-index: 10;
-}
-.side-elements-left { left: 40px; }
-.side-elements-right { 
-   right: 40px; 
-   text-align: center; 
-}
-.side-elements-right a {  /*link unten an e-mail*/
-   writing-mode: vertical-rl;
-   font-family: var(--font-mono);
-   font-size: 13px;
-   letter-spacing: 0.1em;
-   color: var(--light-slate);
-}
-.side-elements-right a:hover { /*стиль link unten an e-mail когда на него наведена мышь*/
-   color: var(--green);
-}
-.side-elements-left::after, .side-elements-right::after {
-   content: '';
-   display: block;
-   width: 1px;
-   height: 90px;
-   margin: 20px auto 0;
-   background-color: var(--light-slate);
+   padding-left: 300px; /* отступ слева для секций Über mich, Ausbildung */
 }
 
 /* === CURSOR GLOW ====== */
@@ -145,7 +161,7 @@ a:hover { color: var(--green); }
    left:0; top:0;
    width:var(--cursor-size);
    height:var(--cursor-size);
-   pointer-events:none;
+   pointer-events:none;  /* не мешает кликам */
    border-radius:50%;
    z-index:9999;
    transform: translate(-50%, -50%);
@@ -153,7 +169,7 @@ a:hover { color: var(--green); }
    transition: transform .05s linear;
 }
 
-/* -------Name Section ----------*/
+/* -------Секция с именем ----------*/
 #name {
    display: flex;
    justify-content: center;
@@ -165,21 +181,22 @@ a:hover { color: var(--green); }
    color: var(--green);
    font-family: var(--font-mono);
    font-size: 16px;
-   margin-bottom: 20px;
+   margin-bottom: 0;
 }
-.big-heading {
-   font-size: clamp(40px, 8vw, 80px);
+.name-heading {
+   margin-top: 0;  
+   margin-bottom: 0;    
+   font-size: clamp(40px, 8vw, 80px);  /* адаптивный размер - шрифт автоматически подстраивается под ширину экрана*/
    color: var(--lightest-slate);
    font-weight: 600;
-   margin: 0;
 }
-#name .summary { 
+#name .summary {       
    max-width: 700px; 
-   margin-top: 20px; 
+   margin-top: 10px; 
 }
 
-/* Numbered Headings */
-.numbered-heading {
+/* Über mich */
+.section-heading {
    display: flex;
    align-items: center;
    font-size: 32px;
@@ -188,7 +205,7 @@ a:hover { color: var(--green); }
    margin-bottom: 40px;
 }
 /*горизонтальная полоска справа от пунктов разделов*/
-.numbered-heading::after {
+.section-heading::after {
    content: '';
    display: block;
    width: 300px;
@@ -197,12 +214,9 @@ a:hover { color: var(--green); }
    background-color: var(--light-navy);
    }
 
-/* ------Über mich Section -------*/
-.about-grid { 
-   display: grid; 
-   grid-template-columns: 3fr 2fr; 
-   gap: 50px; 
-}
+.highlight {
+  color: var(--green); 
+}   
 
 .skills-list {
    display: grid;
@@ -212,7 +226,6 @@ a:hover { color: var(--green); }
    list-style: none;
    column-gap: 80px; /* расстояние между столбцами */
 }
-
 .skills-list li {
    position: relative;
    display: flex;
@@ -224,7 +237,6 @@ a:hover { color: var(--green); }
    padding-left: 20px;
    white-space: nowrap; /* запрещает перенос строк */
 }   
-
 .skills-list li::before {
    content: '▹';
    position: absolute;
@@ -241,13 +253,11 @@ a:hover { color: var(--green); }
    position: relative;
    margin-left: 15px;
 }
-
 .skills-list .level {
    height: 100%;
    background: var(--green); /* цвет заполнения */
    position: relative;
 }
-
 .skills-list .level::after {
    content: "";
    position: absolute;
@@ -260,8 +270,7 @@ a:hover { color: var(--green); }
    border-radius: 50%;
 }
 
-
-/*------- Experience Section --------- */
+/*------- Berufserfahrung Section --------- */
 .experience-tabs { 
    display: flex; 
    min-height: 240px; } /*вертикальная полоска слева меню*/
@@ -281,7 +290,6 @@ a:hover { color: var(--green); }
    height: 40%; 
    background-color: var(--light-navy); 
 }
-
 .tabs-list button {
    background-color: transparent;
    border: 0;
@@ -318,7 +326,8 @@ a:hover { color: var(--green); }
 .tabs-panels ul li::before { content: '▹'; position: absolute; left: 0; color: var(--green); }
 .hidden { display: none; }
 
-/* -------Education Section --------- */
+/* -------Weiterbildung Section --------- */
+/*вертикальная линия с зелёными кружочками*/
 .timeline { position: relative; padding-left: 30px; border-left: 2px solid var(--light-navy); }
 .timeline-item { margin-bottom: 30px; position: relative; }
 .timeline-item::before {
@@ -340,18 +349,17 @@ a:hover { color: var(--green); }
    margin: 0; 
    font-size: 16px; 
 }
-
-/* ---------Weiterbildung Section ----------*/
 .timeline-item p.university-name {
    font-size: 17px; /* Немного увеличиваем шрифт */
    font-weight: 600; /* Делаем его чуть жирнее */
    color: var(--light-slate); /* Делаем цвет чуть ярче */
 }
-
 .timeline-item p.degree-specialization {
    padding-left: 20px; /* Сдвигаем текст вправо */
    font-style: italic;
-}  
+} 
+
+/*Сертификаты*/
 .course-cards-container {
    display: grid;
    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -384,8 +392,7 @@ a:hover { color: var(--green); }
    align-items: center;
    justify-content: center;
    padding: 20px;
-    
-   /* Начальное состояние: скрыто и сдвинуто */
+    /* Начальное состояние: скрыто и сдвинуто */
    opacity: 0;
    visibility: hidden;
    transform: translateY(20px);
@@ -423,12 +430,10 @@ a:hover { color: var(--green); }
    transition: opacity 0.3s ease;
    z-index: 1000; /* поверх всего */
 }
-
 .certificate-overlay.visible {
    opacity: 1;
    visibility: visible;
 }
-
 .certificate-overlay img {
    max-width: 90%;
    max-height: 90%;
@@ -489,7 +494,7 @@ a:hover { color: var(--green); }
    font-size: 14px;
    transition: background-color 0.3s ease;
 }
-.contact-submenu button.active {
+.contact-submenu button.active {  /*Переключение кнопок работает через класс .active, который JS добавляет*/
    background-color: var(--green);
    color: var(--dark-navy);
 }
@@ -549,7 +554,6 @@ footer::after {
    z-index: -1; /* Псевдоэлемент находится за содержимым footer */
 }
 
-
 /* Видимость секций*/
 .content-section {
    opacity: 0;
@@ -557,6 +561,7 @@ footer::after {
    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
    visibility: hidden;
 }
+/*секция плавно «поднимается» и появляется*/
 .content-section.is-visible {
    opacity: 1;
    transform: translateY(0);
@@ -565,7 +570,7 @@ footer::after {
 
 /* --- Стили для появления картинки сайта при наведении --- */
 
-/* 1. Контейнер-ссылка для слова "Website" */
+/* Контейнер-ссылка для слова "Website" */
 .image-tooltip-trigger {
    position: relative; /* точка отсчета для позиционирования картинки */
    color: var(--green); /* Подсвечиваем слово "салатовым" */
@@ -599,7 +604,7 @@ footer::after {
    width: 100%;
 }
 
-/* 2. картинка-скриншот (изначально скрыта) */
+/* картинка-скриншот (изначально скрыта) */
 .tooltip-image-preview {
    /* Скрытие элемента */
    opacity: 0;
@@ -620,7 +625,7 @@ footer::after {
    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* 3. Показываем картинку при наведении на ссылку */
+/* Показываем картинку при наведении на ссылку */
 .image-tooltip-trigger:hover .tooltip-image-preview {
    opacity: 1;
    visibility: visible;
@@ -710,11 +715,97 @@ footer::after {
    height: 28px;
 }
 
-/* Mobile */
+/*========ScrollUp===========*/
+
+/* Кнопка «вверх» в правом нижнем углу */
+.arrow-container {
+   position: fixed;
+   right: 24px;
+   bottom: 24px;
+   width: 56px;
+   height: 56px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 50%;
+   background: rgba(17, 34, 64, 0.8);
+   backdrop-filter: blur(8px);
+   -webkit-backdrop-filter: blur(8px);
+   box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+   z-index: 1200;
+   opacity: 0;
+   pointer-events: none;
+   transform: translateY(10px);
+   transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+}
+
+.arrow-container.show {
+   opacity: 1;
+   pointer-events: auto;
+   transform: translateY(0);
+   cursor: pointer;
+}
+
+.arrow-container:hover {
+   background: rgba(17, 34, 64, 0.95);
+}
+
+/* Три стрелки-«шеврона», направленные вверх */
+.arrow-container .arrow {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 14px;
+   height: 14px;
+   border-left: 2px solid var(--green);
+   border-bottom: 2px solid var(--green);
+   transform: translate(-50%, -50%) rotate(135deg);
+   opacity: 0.7;
+   transition: transform 0.28s cubic-bezier(.22,.61,.36,1), opacity 0.3s ease;
+   will-change: transform;
+}
+
+.arrow-container .arrow:nth-child(1) { top: calc(50% + 0px); }
+.arrow-container .arrow:nth-child(2) { top: calc(50% + 10px); opacity: 0.5; }
+.arrow-container .arrow:nth-child(3) { top: calc(50% + 20px); opacity: 0.3; }
+
+.arrow-container:hover .arrow { opacity: 0.9; transform: translate(-50%, calc(-50% - 2px)) rotate(135deg); }
+
+
+/* Адаптивность */
 @media (max-width: 768px) {
    main { padding: 0 25px; }
    .header { padding: 0 15px; }
-   .about-grid { grid-template-columns: 1fr; }
+   .menu-toggle { display: block; }
+   /* Перестраиваем меню под выпадающее */
+   .main-menu { position: static; transform: none; }
+   .header nav { align-items: center; }
+   .nav-links {
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: rgba(10, 25, 47, 0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--light-navy);
+      transform: translateY(-8px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      z-index: 1200;
+   }
+   .nav-links.is-open { opacity: 1; visibility: visible; transform: translateY(0); }
+   .main-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 8px 16px;
+   }
+   .main-menu li { margin: 0; }
+   .main-menu a { display: block; padding: 12px 4px; }
+   
+   .resume-btn { padding: 0.55rem 0.8rem; font-size: 14px; }/* Кнопка Lebenslauf компактнее */
    .about-pic { display: none; }
    .experience-tabs { flex-direction: column; }
    .tabs-list { flex-direction: row; width: 100%; overflow-x: auto; border-left: none; border-bottom: 2px solid var(--light-navy); }
@@ -722,4 +813,58 @@ footer::after {
    .tabs-list .highlighter { display: none; } /* Highlighter auf Mobil ausblenden */
    .tabs-panels { width: 100%; padding: 25px 5px; }
    .side-elements-left, .side-elements-right { display: none; }
+
+   /* Общие отступы/размеры */
+   section { padding: 80px 0; }
+   #about, #education { padding-left: 0; }
+   .skills-list { grid-template-columns: 1fr; column-gap: 20px; }
+   .skills-list .bar { width: 140px; }
+   .course-card { padding: 1.4rem; }
+   .social-links { gap: 20px; }
+   .social-links svg { width: 24px; height: 24px; }
+
+   /* ScrollUp компактнее на планшете/мобиле */
+   .arrow-container { width: 52px; height: 52px; right: 16px; bottom: 16px; }
+   .arrow-container .arrow { width: 12px; height: 12px; }
+}
+
+/* Отключаем hover-подсказки и превью на тач-устройствах */
+@media (hover: none), (pointer: coarse), (max-width: 768px) {
+   .image-tooltip-trigger .tooltip-container,
+   .image-tooltip-trigger .tooltip-image-preview { display: none !important; }
+
+   /* Инлайн-просмотр сайта под ссылкой на мобильных */
+   .mobile-website-preview {
+      margin: 12px auto 0;
+      border: 1px solid var(--light-navy);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+      max-width: min(520px, 92vw);
+   }
+   .mobile-website-preview img {
+      display: block;
+      width: 100%;
+      height: auto;
+   }
+}
+
+/* На очень маленьких экранах вовсе скрываем инлайн-превью, оставляем только текст */
+@media (max-width: 576px) {
+  .mobile-website-preview { display: none !important; }
+}
+
+/* Малые телефоны */
+@media (max-width: 480px) {
+   main { padding: 0 16px; }
+   .header { height: 64px; padding: 0 12px; }
+   .resume-btn { padding: 0.5rem 0.75rem; font-size: 13px; }
+   section { padding: 64px 0; }
+   .name-heading { font-size: clamp(28px, 10vw, 48px); }
+   .section-heading { font-size: 26px; }
+   .tabs-panels h3 { font-size: 18px; }
+   .tabs-panels .range { font-size: 12px; }
+   .course-card { padding: 1.1rem; }
+   .certificate-overlay img { max-width: 94%; width: 94%; }
+   .arrow-container { width: 48px; height: 48px; right: 14px; bottom: 14px; }
 }
